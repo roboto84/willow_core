@@ -20,7 +20,7 @@ class SqlLiteDb:
                 return True
             return False
         except Error as error:
-            self._logger.info(f'Error check if tables exist in Air_DB', error)
+            self._logger.info(f'Error check if tables exist in DB', error)
 
     @staticmethod
     def set_row_factory(conn: Connection) -> None:
@@ -36,7 +36,7 @@ class SqlLiteDb:
             self._logger.debug(f'Opened DB "{self._db_location}" successfully')
             return conn
         except Error as error:
-            self._logger.info(f'Air_DB connection failed', error)
+            self._logger.info(f'DB connection failed', error)
 
     def _db_close(self, live_db_connection: Connection) -> None:
         try:
@@ -44,7 +44,7 @@ class SqlLiteDb:
             live_db_connection.close()
             self._logger.debug(f'Saved and Closed DB "{self._db_location}" successfully')
         except Error as error:
-            self._logger.info(f'Air_DB close failed', error)
+            self._logger.info(f'DB close failed', error)
 
     def _check_db_state(self, table_names: list[str]) -> bool:
         try:
@@ -56,4 +56,4 @@ class SqlLiteDb:
             self._db_close(conn)
             return db_schema_good
         except Error as error:
-            self._logger.info(f'Checking Air_DB state failed', error)
+            self._logger.info(f'Checking DB state failed', error)
