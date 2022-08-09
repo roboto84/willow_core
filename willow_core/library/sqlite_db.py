@@ -1,9 +1,9 @@
 
 import logging.config
 import sqlite3
-from datetime import datetime
 from sqlite3 import Connection, Cursor, Error
 from typing import Any
+from .time_handler import TimeHandler
 
 
 class SqlLiteDb:
@@ -28,7 +28,7 @@ class SqlLiteDb:
 
     @staticmethod
     def _get_time() -> str:
-        return datetime.now().strftime('%m/%d/%Y-%H:%M:%S')
+        return TimeHandler.get_standard_utc_time()
 
     def _db_connect(self) -> Connection:
         try:
