@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "willow_core"
-version = "0.1.0"
+version = "0.1.1"
 description = "Core python libraries shared amongst various projects"
 authors = ["roboto84 <7658704+roboto84@users.noreply.github.com>"]
 

@@ -72,7 +72,7 @@ class SqlLiteDb:
         except Error as error:
             self._logger.error(f'Error occurred getting tags from DB: {str(error)}')
 
-    def delete_record(self, data_key: str, table_name: str) -> DeleteDbItemResponse:
+    def delete_record(self, data_key: str, key_column: str, table_name: str) -> DeleteDbItemResponse:
         response: DeleteDbItemResponse = {
             'deleted_item': False,
             'reason': 'error',
@@ -81,7 +81,7 @@ class SqlLiteDb:
         try:
             conn: Connection = self._db_connect()
             db_cursor: Cursor = conn.cursor()
-            db_cursor.execute(f'DELETE FROM {table_name} WHERE data = ?;', [data_key])
+            db_cursor.execute(f'DELETE FROM {table_name} WHERE {key_column} = ?;', [data_key])
             self._db_close(conn)
             self._logger.info(f'Deleted record successfully for: {data_key}')
             response['deleted_item'] = True
